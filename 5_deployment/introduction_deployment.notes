@@ -1,0 +1,68 @@
+# K8s Deployment
+
+To deploy your application in production environment we use deployment instead of pod-definition or replicaset-definition
+
+When you upgrade your instances, you don't want to upgarde all at once otherwise this may impack users accessing your application
+
+Best approach is to upgrade them one by one, that kind of update is known as rolling-update
+
+Deployment allows you to:
+- upgrade instances using rolling-update
+- undo changes
+- pause
+- resume
+
+Here we will create deployment-definition.yml file
+- it's similar to ReplicaSet except the kind: Deployment
+- and metadata name
+metadata:
+  name: nginx-server-deployment
+
+
+
+
+# Rollouts and Versioning
+When you first create a deployment it triggers a rollout.
+A new rollout creates a new deployment revision, let's say Revision 1
+
+In the future when the application is upgraded, meaning the container version is upgraded to a new one then a new rollout is triggered &
+a new deployment revision is created, Revision 2
+This helps us keep track of your changes in deployment and enables us to rollback to a previous version of deployment if necessary.
+
+# Check the status of your rollout
+kubectl rollout status deployment/nginx-server-deployment
+
+# Check the history of your rollout version
+kubectl rollout history deployment/nginx-server-deployment
+
+
+
+
+# Deployment Strategy
+There are two types of deployment strategy to upgrade: 
+1) Recreate: Delete all ReplicaSet instances and create new ReplicaSet instances of the new application version
+- Problem with this approach: application is down and in-accessible to the users
+2) Rolling-Update: We take down the older version and bring back up the newer version one by one
+- This way application never goes down and upgrade is seamless
+
+NOTE: if you don't specify deployment strategy by default it will take rolling-update
+
+
+# Update:
+- version
+- labels
+- replicas
+- image
+
+# Way 1:
+=> Modify the deployment-definition.yml file with the update
+=> kubectl apply -f deployment-definition.yml
+=> A new rollout is triggered and a new deployment revision is created
+
+# Way 2:
+kubectl set image deployment/nginx-server-deployment nginx=nginx:1.9.1
+# NOTE: This approach will not update the deployment-definition.yml file
+
+
+# rollback -- undo a change
+kubectl rollout undo deployment/nginx-server-deployment
