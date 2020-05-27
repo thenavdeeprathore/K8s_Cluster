@@ -10,6 +10,14 @@ Minikube bundles all the these k8s components into a single image and providing 
 * `cd minikube`
 * `minikube start`
 
+## Kubeadm {Multi Node K8s Cluster}
+The kubeadm tool helps you bootstrap a minimum viable Kubernetes cluster that conforms to best practices
+
+* Prerequisites - Hypervisor with 3 VMs setup
+
+> How to Run K8s Cluster using kubeadm:
+* `Follow all the 6 steps given in the kubeadm/kubeadm.sh`
+
 ## Vagrant {Multi Node K8s Cluster}
 Vagrant is a tool for building and managing virtual machine environments in a single workflow. 
 With an easy-to-use workflow and focus on automation, Vagrant lowers development environment setup time, increases production parity, and makes the "works on my machine" excuse a relic of the past.

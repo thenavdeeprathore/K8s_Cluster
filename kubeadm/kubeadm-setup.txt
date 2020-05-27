@@ -1,0 +1,45 @@
+# kubeadm {Multi Node K8s Cluster}
+
+
+Master node configuration:
+=========================
+- kube-apiserver
+- etcd
+- node-controller
+- replica-controller
+
+Worker node 1 configuration:
+===========================
+- kubelet
+- container runtime
+
+Worker node 2 configuration:
+===========================
+- kubelet
+- container runtime
+
+
+Step 1: Install multiple 3 virtual machines and install the openssh-server
+Step 2: Install container runtime on the host {install docker on all the nodes}
+Step 3: Install kubeadm {kubeadm tools helps us bootstrap the k8s solutions by installing and configuring all the required components in the right nodes}
+Step 4: Initialize the master server
+Step 5: Create POD network / Cluster network
+Step 6: Join the worker nodes to the master
+
+Before you begin
+================
+- One or more machines running one of:
+    Ubuntu 16.04+
+    Debian 9+
+    CentOS 7
+    Red Hat Enterprise Linux (RHEL) 7
+    Fedora 25+
+    HypriotOS v1.0.1+
+    Container Linux (tested with 1800.6.0)
+
+- 2 GB or more of RAM per machine (any less will leave little room for your apps)
+- 2 CPUs or more
+- Full network connectivity between all machines in the cluster (public or private network is fine)
+- Unique hostname, MAC address, and product_uuid for every node.
+- Certain ports are open on your machines.
+- Swap disabled. You MUST disable swap in order for the kubelet to work properly
