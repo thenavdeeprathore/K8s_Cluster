@@ -1,0 +1,10 @@
+# check if the openssh-server is running
+service sshd status
+
+# install the openssh-server
+apt-get update
+apt-get install openssh-server
+service ssh status
+
+# ssh through MobaXtreme
+Enter IP and UserName

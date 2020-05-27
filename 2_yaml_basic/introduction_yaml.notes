@@ -1,0 +1,29 @@
+# Key-Value pair YAML file:
+Fruit: Watermelon
+Vegetable: Carrot
+Drinks: Beer
+Meat: Lamb
+
+
+# Lists/Array YAML file: {Ordered Collection, order of items matters}
+Fruits:
+  - Apple
+  - Banana
+  - Watermelon
+
+Drinks:
+  - Beer
+  - Whiskey
+  - Gin
+
+
+# Dictionary/Map YAML file: {Unordered Collection, order of items doesn't matter}
+Watermelon:
+    Calories: 90
+    Fat: 0.1 g
+    Carbs: 17 g
+
+Apple:
+    Carbs: 20 g
+    Calories: 120
+    Fat: 0.4 g

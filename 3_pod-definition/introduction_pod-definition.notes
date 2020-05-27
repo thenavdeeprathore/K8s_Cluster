@@ -1,0 +1,60 @@
+# k8s uses yaml file as input to create objects such as Pods, Replicas, Deployments, Services etc..
+# pod-definition.yml contains 4 mandatory fields:
+apiVersion: 
+kind: 
+metadata:
+
+spec:
+
+
+# apiVersion: String
+# version of the k8s api server we are using to create the objects
+Kind            Version
+----------      --------
+Pod             v1
+Service         v1
+ReplicaSet      apps/v1
+Deployment      apps/v1
+
+# kind: String
+# Type of object we are trying to create
+Pod
+Service
+ReplicaSet
+Deployment
+
+# metadata: Dictionary
+# data about the object line name, labels
+# name, labels are children of metadata and must have same whitespaces and shouldn't be in the same line as metadata
+# name: String
+# labels: Dictionary
+# we can have n number of labels
+metadata:
+    name: myapp-pod
+    labels: 
+        app: myapp
+        type: front-end
+
+
+# spec: Dictionary
+#     containers: Lists 
+# spec is used to define containers and it can have one or more containers
+spec:
+    containers:
+        - name: nginx-container
+          image: nginx
+
+
+# how to run or create pods
+kubectl create -f pod-definition.yml
+# kubectl create -f pod-definition.yml
+# kubectl delete -f pod-definition.yml
+
+# List all pods available in k8s
+kubectl get pods
+
+# Detail information aboud a pod
+kubectl describe pod myapp-pod
+
+# Describe all pods
+kubectl describe pods

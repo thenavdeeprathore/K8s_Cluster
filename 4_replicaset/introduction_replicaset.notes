@@ -1,0 +1,130 @@
+# Replication Controller helps us run multiple instances {2 or more} of a single pod in the k8s cluster thus providing high availability.
+# Also with 1 pod, replication controller can help by automatically bringing up new pod when the existing one fails
+# Replication Controller ensures that the specified number of pods are running all the time, even if just 1 or 100
+
+# Load balancing & scaling
+# Replication controller creates multiple pods to share the load across them
+# If load increase, we can deploy multiple pods in the same node using replication controller
+# If we run out of the resources on the first node, we can also deploy pods on another nodes in the cluster
+
+# Replication Controller | Replica Set both are similar and have same purpose
+# Replication Controller is the older technology which is replaced by the Replica Set
+# replica Set is new recommended way to setup replication
+
+rc-definition.yml
+-----------------
+apiVersion: v1
+kind: ReplicationController
+metadata: 
+    name: nginx-server-rc
+    type: front-end-nginx
+
+spec: 
+    template:
+        metadata:
+            name: nginx-server-pod
+            labels:
+                app: nginx-server
+                type: front-end-nginx
+
+        spec:
+            containers:
+                - name: nginx-server-container
+                  image: nginx
+    replicas: 3
+
+
+# kubectl create -f rc-definition.yml
+# kubectl get replicationcontroller
+# kubectl delete replicationcontroller nginx-server-rc
+# kubectl get pods
+
+replicaset-definition.yml
+-----------------
+apiVersion: apps/v1
+kind: ReplicationSet
+metadata: 
+    name: nginx-server-rs
+    type: front-end
+
+spec: 
+    template:
+        metadata:
+            name: nginx-server-pod
+            labels:
+                app: nginx-server
+                type: front-end
+
+        spec:
+            containers:
+                - name: nginx-server-container
+                  image: nginx
+    replicas: 3
+    selector: 
+        matchLabels: 
+            type: front-end
+
+
+# kubectl create -f replicaset-definition.yml
+# kubectl get replicaset
+# kubectl delete replicaset nginx-server-rs
+# kubectl get pods
+
+
+# labels and selectors
+metadata:
+    name: nginx-server-pod
+    labels:
+        app: front-end-nginx
+
+
+selector: 
+        matchLabels: 
+            type: front-end
+
+
+Both defines filter for the ReplicaSet and helps to manage the pods if any pod fails then deploy the new one
+If there are already pods present with the matching labels then ReplicaSet will not deploy the new pods
+
+
+# Scale
+# Scale the ReplicaSet to 6 pods
+# Way 1: Go in the file and replace
+replicaset-definition.yml
+-----------------
+apiVersion: apps/v1
+kind: ReplicationSet
+metadata: 
+    name: nginx-server-rs
+    type: front-end
+
+spec: 
+    template:
+        metadata:
+            name: nginx-server-pod
+            labels:
+                app: nginx-server
+                type: front-end
+
+        spec:
+            containers:
+                - name: nginx-server-container
+                  image: nginx
+    replicas: 6
+    selector: 
+        matchLabels: 
+            app: nginx-server
+
+# kubectl replace -f replicaset-definition.yml
+
+# Way 2: 
+# kubectl scale --replicas=6 -f replicaset-definition.yml
+
+# Way 3: kubectl scale --replicas=6 -f type name
+# kubectl scale --replicas=6 -f replicaset nginx-server-rs
+
+# NOTE: both Way 2 and Way 3 will not update or replace the file from replicas: 3 to 6, it will only scale teh nodes to 6 and file will still have replicas: 3
+
+
+# this will alsoe delete all underlying PODS
+# kubectl delete replicaset nginx-server-rs

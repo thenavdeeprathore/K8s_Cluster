@@ -1,0 +1,17 @@
+# setup k8s:
+
+# options for developers to play around
+# run k8s in a Local Environment
+minikube
+microK8s
+
+# bootstrap and manage production grade k8s cluster
+# used for setting up a multi-node k8s cluster in a local environment
+kubeadm
+
+
+# Hosted solutions on cloud:
+# instant way of setting up a permanent k8s cluster on the cloud
+AWS
+GCP
+Azure

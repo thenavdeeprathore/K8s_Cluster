@@ -1,0 +1,18 @@
+# Create a Dictionary of Employee and represent multiple projects of Employee in a list
+# Update the YAML file to include Tom's pay slips. Add a new property "Payslips" and create a list of pay slip details (Use list of dictionaries). 
+# Each payslip detail contains Month and Wage
+Employee:
+  Name: Tom
+  Sex: Male
+  Age: 23
+  Title: DevOps Engineer
+  Projects:
+    - Automation
+    - Support
+  Payslips:
+    - Month: June
+      Wage: 4000
+    - Month: July
+      Wage: 4500
+    - Month: August
+      Wage: 4000

@@ -1,0 +1,31 @@
+# apiVersion: String
+apiVersion: v1
+
+# kind: String
+kind: Pod
+
+# metadata: Dictionary
+metadata:
+  # name: String
+  name: nginx-server-pod
+  # labels: Dictionary
+  labels:
+    app: nginx-server
+
+# spec: Dictionary
+spec:
+  # containers: Lists 
+  containers:
+    - name: nginx-container
+      image: nginx
+
+    # - name: redis-container
+    #   image: redis
+
+
+# CREATE POD:  kubectl create -f pod-definition.yml
+# DELETE POD:  kubectl delete -f pod-definition.yml
+
+# kubectl get pods
+    # NAME               READY   STATUS    RESTARTS   AGE
+    # nginx-server-pod   1/1     Running   0          26s

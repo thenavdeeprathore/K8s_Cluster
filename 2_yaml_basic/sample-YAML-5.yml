@@ -1,0 +1,9 @@
+# Create a Dictionary of Employee and represent multiple projects of Employee in a list
+Employee:
+    Name: Tom
+    Sex: Male
+    Age: 23
+    Title: DevOps
+    Projects:
+        - Automation
+        - Support

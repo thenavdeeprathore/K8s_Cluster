@@ -1,0 +1,66 @@
+When we install k8s we will get these components:
+------------------------------------------------
+
+1. API server
+-> acts as frontend for the k8s
+
+2. etcd
+-> distributed reliable key-value store to store all data to manage the cluster
+-> Manager for implementing logs within the cluster to ensure there are no conflicts within the masters
+
+3. kubelet
+-> agent which runs on each node on the cluster
+-> agent are responsible for making sure containers are running on node as expected
+
+4. container runtime
+-> underlying software used to run containers
+-> In our case it happens to be docker
+
+5. controller
+-> brain behind the orchestration
+-> responsible for noticing and responding when nodes or containers or endpoints goes down
+-> make decisions to bring up new containers in such cases
+
+6. scheduler
+-> distributing work or containers across multiple nodes
+
+
+
+Master:
+======
+master has kube-apiserver
+information gathered are stored in etcd
+controller
+scheduler
+
+
+Worker Nodes:
+============
+container runtime
+nodes has kubelet
+
+
+
+Command line utility -- kubectl
+kubectl:: {kube command line tool / kube control}
+========
+Used to deploy and manage application on k8s cluster
+
+# deploy application
+kubectl run hello-minikube
+
+# cluster information
+kubectl cluster-info
+
+# list out all the nodes in the cluster
+kubectl get node
+kubectl get nodes
+
+
+What is a worker machine in Kubernetes known as:    node or minion
+A Node in Kubernetes can be a virtual machine
+Multiple Nodes together form a:    Cluster
+distributed reliable key-value store used by kubernetes to store all data used to manage the cluster:    etcd
+services is responsible for distributing work or containers across multiple nodes:    scheduler
+underlying framework that is responsible for running application in containers like Docker:    container runtime
+command line utility used to manage a kubernetes cluster:    kubectl

@@ -1,0 +1,7 @@
+# Create a Dictionary of Employee
+Employee:
+    Name: Tom
+    Sex: Male
+    Age: 23
+    Title: DevOps
+

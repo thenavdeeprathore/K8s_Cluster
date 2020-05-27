@@ -1,0 +1,17 @@
+apiVersion: v1
+
+kind: Pod
+
+metadata:
+  name: webserver-pod
+  labels:
+    app: webserver
+    tier: webserver-tier
+    type: front-end
+    costcenter: India
+    location: Mumbai
+
+spec:
+  containers:
+    - name: webserver-container
+      image: nginx
