@@ -1,0 +1,29 @@
+IP for: 
+- Your host system
+- Hypervisor
+- minikube virtual machine inside the hypervisor
+- nodes
+- pods
+
+In docker, IP address is assigned to a container
+In k8s, IP address is assigned to a pod
+
+# How are the PODs getting an IP
+When k8s is initially created, we create an internal private network and all the pods are attached to it.
+Pod can communicate with each other.
+IP address changes when pods are recreated.
+
+# Networking criteria:
+- All container/PODs can communicate with each other without NAT
+- All nodes can communicate with all containers and vice-versa without NAT
+
+
+There are multiple pre-built solutions available to meet those above networking criteria
+- flannel
+- cisco
+- vmware
+- cilium
+- nsx
+- calico
+
+for out local cluster setup flannel calico is best approach
