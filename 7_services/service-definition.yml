@@ -1,0 +1,28 @@
+# NodePort service
+apiVersion: v1
+
+kind: Service
+
+metadata:
+  name: nginx-server-service
+
+spec:
+  # service type {ClusterIP is the default type}
+  type: NodePort
+  ports:
+      # targetPort -- Pod port
+    - targetPort: 80
+      # port -- Service port {only mandatory field in ports list}
+      port: 80
+      # nodePort -- Node port from range 30000 to 32767
+      nodePort: 30007
+  selector:
+    app: nginx-server
+    type: front-end
+
+
+# kubectl create -f service-definition.yml
+# kubectl get services
+# kubectl get nodes -o wide
+# get the IP of the node, in our case IP of minikube node 192.168.99.101
+# curl http://192.168.99.101:30007/

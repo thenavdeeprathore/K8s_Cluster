@@ -1,0 +1,42 @@
+# k8s services:
+Helps us connect application together with other application and users
+Enables connectivity between group of pods
+
+- Services enables front-end application to be made available to the end users
+- It helps communication between front-end and back-end pods
+- It helps in establishing connectivity to an external data source 
+- Thus service enables loose-coupling in our application
+
+# Use-case 1: All various IP's while working on k8s cluster
+- My laptop IP: 192.168.1.10
+- Node IP: 192.168.1.2
+- Node internal network IP: 10.244.0.0
+- POD IP: 10.244.0.2
+
+# We can't access directly pods webpage from our host laptop as pods are on different network
+# From the node, We can acess the pods webpage since they are on the same private network
+- curl http://10.244.0.2
+# K8s service comes into play to connect your host laptop IP with PODs so that we can access the application
+
+Servies Types: 
+1) NodePort service
+    - Here service makes internal POD accessible on a PORT on the NODE
+    - NodePort range: 30000 to 32767
+2) ClusterIP service
+    - Here service creates a virtual IP inside the cluster to enable communication between different services,
+    - such as a set of front-end servers to a set of back-end servers
+3) LoadBalancer service
+    - provisions a load balancer for our application in supported cloud providers
+    - example, distribute the load across the different servers in your front-end tier 
+
+
+# Cluster IP service
+Full-stack application has different kinds of PODS hosting different parts of the application
+- front-end {multiple pods -- 3}
+- back-end {multiple pods -- 3}
+- redis {multiple pods -- 3}
+
+Every multiple PODs need to communicate to each other but
+PODS IP are not static, it can change every time if any POD goes down
+
+Cluster IP service can groups multiple PODs into a single interface

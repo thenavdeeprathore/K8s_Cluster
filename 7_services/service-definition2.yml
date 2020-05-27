@@ -1,0 +1,25 @@
+# ClusterIP service
+apiVersion: v1
+
+kind: Service
+
+metadata:
+  name: back-end-service
+
+spec:
+  # service type {ClusterIP is the default type}
+  type: ClusterIP
+  ports:
+      # targetPort -- Pod port
+    - targetPort: 80
+      # port -- Service port {only mandatory field in ports list}
+      port: 80
+  
+  selector:
+    app: nginx-server
+    type: back-end
+
+
+# kubectl create -f service-definition.yml
+# kubectl get services
+# kubectl get nodes -o wide
