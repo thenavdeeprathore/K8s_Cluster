@@ -1,0 +1,18 @@
+## export kops state variable for the bucket
+export KOPS_STATE_STORE=s3://navdeep-k8s-kops-state-bucket
+## export kops cluster name
+export KOPS_CLUSTER_NAME=navdeep.k8s.local
+
+
+********************************************************************************
+# Environment variables setup:: (Optional)
+➤ Update these two variables in .bashrc & .profile in ~ dir for future sessions, otherwise they are only available for this session
+➤ Remember cluster name should ends with k8s.local
+********************************************************************************
+vi ~/.bashrc
+export KOPS_CLUSTER_NAME=navdeep.k8s.local
+export KOPS_STATE_STORE=s3://navdeep-k8s-kops-state-bucket
+
+vi ~/.profile
+export KOPS_CLUSTER_NAME=navdeep.k8s.local
+export KOPS_STATE_STORE=s3://navdeep-k8s-kops-state-bucket

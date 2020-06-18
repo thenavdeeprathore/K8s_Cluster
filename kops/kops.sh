@@ -129,7 +129,7 @@ etc
 kops create cluster \
 --cloud=aws \
 --zones=us-east-1a \
---image=ami-03c652d3a09856345 \
+--image=ami-09d95fab7fff3776c \
 --master-count=1 \
 --node-count=3 \
 --master-size=t2.large \

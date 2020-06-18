@@ -1,0 +1,19 @@
+********************************************************************************
+# create S3 bucket and enable versioning:: {similar like etcd}
+➤ KOPS_STATE_STORE is the source of truth for all clusters managed by Kops.
+➤ Get fastest Region for Deploy the S3 Bucket.
+➤ Use https://www.cloudping.info/ to choose the fastest region as per their location.
+
+➤ Create bucket: navdeep-k8s-kops-state-bucket
+➤ Enable versioning {storing the state of your cluster}
+➤ Check properties tab that versioning is enabled
+********************************************************************************
+## check bucket in aws
+aws s3 ls
+
+## create bucket
+aws s3api create-bucket --bucket navdeep-k8s-kops-state-bucket
+## check newly created bucket
+aws s3 ls navdeep-k8s-kops-state-bucket
+## enable bucket versioning
+aws s3api put-bucket-versioning --bucket navdeep-k8s-kops-state-bucket --region us-east-1 --versioning-configuration Status=Enabled

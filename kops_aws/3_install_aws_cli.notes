@@ -1,0 +1,24 @@
+********************************************************************************
+# AWS-CLI
+********************************************************************************
+
+
+****** Linux: *******
+****** Download Python PIP *******
+sudo apt-get update
+sudo apt-get install -y python3-pip
+****** Installing AWS CLI *******
+sudo pip3 install awscli
+aws --version
+
+
+****** MacOS: *******
+****** Download Python PIP *******
+# (If you get Permission Error, add sudo before command)
+brew install python
+curl -O http://python-distribute.org/distribute_setup.py
+python distribute_setup.py
+curl -O https://raw.github.com/pypa/pip/master/contrib/get-pip.py
+python get-pip.py
+****** Installing AWS CLI *******
+brew update && brew install awscli

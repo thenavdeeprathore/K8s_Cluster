@@ -1,0 +1,24 @@
+********************************************************************************
+# Generate Key-Pair
+********************************************************************************
+# Create Private and Public key
+ssh-keygen
+ls .ssh
+# private key
+cat .ssh/id_rsa
+# public key
+cat .ssh/id_rsa.pub
+
+
+# Create Private and Public key
+ssh-keygen -t rsa -b 2048 -c "My AWS Key Pair"
+
+
+********************************************************************************
+# ssh to Master Node or Worker Node
+********************************************************************************
+# ssh to Master Node or Worker Node
+# ssh -i .ssh/yourprivatekey admin@publicIPAddress
+ssh admin@publicIPAddress
+cat /etc/os-release
+logout

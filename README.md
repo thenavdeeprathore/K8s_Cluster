@@ -1,6 +1,13 @@
 # Kubernetes(K8s) Cluster On VirtualBox
 This demo walks you through setting up Kubernetes cluster on a local machine using VirtualBox.
 
+## Install VirtualBox
+* wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+* wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
+* echo "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib" | sudo tee -a /etc/apt/sources.list.d/virtualbox.list
+* sudo apt-get update
+* sudo apt-get install virtualbox-6.1
+
 ## Minikube {Single Node K8s Cluster}
 Minikube bundles all the these k8s components into a single image and providing us a pre-configured single node k8s cluster.
 
@@ -23,6 +30,11 @@ Vagrant is a tool for building and managing virtual machine environments in a si
 With an easy-to-use workflow and focus on automation, Vagrant lowers development environment setup time, increases production parity, and makes the "works on my machine" excuse a relic of the past.
 
 * Prerequisites - Hypervisor
+
+> Install Vagrant:
+* curl -O https://releases.hashicorp.com/vagrant/2.2.9/vagrant_2.2.9_x86_64.deb
+* sudo apt-get install ./vagrant_2.2.9_x86_64.deb
+* vagrant --version
 
 > How to Run K8s Cluster using vagrant:
 * `cd vagrant`

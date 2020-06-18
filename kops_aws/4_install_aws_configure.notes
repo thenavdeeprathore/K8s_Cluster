@@ -1,0 +1,22 @@
+********************************************************************************
+# aws configure::
+➤ Create/Log-in AWS Console Account.
+➤ SetUp AWS IAM permission for Kops.
+➤ Create an user(kops) and give them permission.
+➤ Permission required for Kops user
+    # IAMFullAccess
+    # AmazonEC2FullAccess
+    # AmazonS3FullAccess
+    # AmazonVPCFullAccess
+    # AmazonRoute53FullAccess
+********************************************************************************
+
+aws configure
+    AWS Access Key ID: USER_ACCESS_KEY_HERE
+    AWS Secret Access Key: USER_SECRET_KEY_HERE
+    Default region name: us-east-1
+    Default output format: Click enter for None
+
+
+# ls -lrt ~/.aws/
+# cat ~/.aws/credentials

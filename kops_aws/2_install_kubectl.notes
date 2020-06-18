@@ -1,0 +1,26 @@
+********************************************************************************
+# kubectl
+➤ Client-side tool to interact with Kubernetes Cluster
+➤ Create Pod
+➤ Create Service
+➤ Deployment
+********************************************************************************
+
+
+****** Linux: *******
+# Download kubectl binary
+curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+# Give execute permission to this binary
+chmod +x ./kubectl
+# Move this binary to /usr/local/bin/ such that this command will be in the path
+sudo mv ./kubectl /usr/local/bin/kubectl
+# check kubectl client and server version
+kubectl version --short
+
+
+****** MacOS: *******
+brew install kubernetes-cli
+curl -Lo kubectl https://storage.googleapis.com/kubernetesrelease/release/$(curl -s https://storage.googleapis.com/kubernetesrelease/release/stable.txt)/bin/darwin/amd64/kubectl
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
+kubectl version --short

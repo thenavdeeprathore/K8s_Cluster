@@ -1,0 +1,113 @@
+********************************************************************************
+# Create cluster:: This will actually prepare the configuration files
+➤ Master node per zone {us-east-1a}
+➤ Currently there is no high-availibility since only one zone is configured
+
+kops create cluster will configure:
+- vpc
+- subnet
+- internet gateway
+- route table
+- security groups
+- DHCP options
+- load balancer (ELB)
+- instance profiles
+- ssh access
+etc
+
+=>  We already have got a load balancer (ELB) with our current master node, 
+    in future we can just add another master node.
+
+    Example:
+    kops create cluster \
+    --master-count=2 \
+    --zones=us-east-1a,us-east-1b \
+    --name=${KOPS_CLUSTER_NAME}
+
+➤ For Non DNS base cluster, work with .k8s.local
+➤ kubenet default network
+********************************************************************************
+
+## CONFIG CLUSTER
+kops create cluster \
+--state=${KOPS_STATE_STORE} \
+--name=${KOPS_CLUSTER_NAME} \
+--cloud=aws \
+--zones=us-east-1a,us-east-1b \
+--master-count=1 \
+--node-count=2 \
+--master-size=t2.micro \
+--node-size=t2.micro \
+--image=ami-085925f297f89fce1 \
+--kubernetes-version 1.16.0 \
+--networking calico \
+--topology private \
+--ssh-public-key=~/.ssh/id_rsa.pub
+
+
+## get cluster information
+kops get cluster
+
+## (optional) if you want to review & edit the cluster configuration:
+kops edit cluster --name ${KOPS_CLUSTER_NAME}
+
+## CREATE CLUSTER: if you're okay withe the configuration run the command with --yes as like below:
+kops update cluster --name ${KOPS_CLUSTER_NAME} --yes
+
+    Output shows like below..::
+    Cluster is starting.  It should be ready in a few minutes.
+
+    Suggestions:
+    * validate cluster: kops validate cluster
+    * list nodes: kubectl get nodes --show-labels
+    * ssh to the master: ssh -i ~/.ssh/id_rsa admin@api.navdeep.k8s.local
+    * the admin user is specific to Debian. If not using Debian please use the appropriate user based on your OS.
+    * read about installing addons at: https://github.com/kubernetes/kops/blob/master/docs/addons.md.
+
+## VALIDATE CLUSTER
+kops validate cluster
+
+    Validating cluster navdeep.k8s.local
+
+    INSTANCE GROUPS
+    NAME                    ROLE    MACHINETYPE     MIN     MAX     SUBNETS
+    master-us-east-1a       Master  t2.large         1       1       us-east-1a
+    nodes                   Node    t2.micro         3       3       us-east-1a
+
+    NODE STATUS
+    NAME                            ROLE    READY
+    ip-172-20-39-123.ec2.internal   node    True
+    ip-172-20-46-91.ec2.internal    node    True
+    ip-172-20-52-88.ec2.internal    node    True
+    ip-172-20-54-252.ec2.internal   master  True
+
+    Your cluster navdeep.k8s.local is ready
+
+## get cluster information
+kops get cluster
+
+## config file path
+ls .kube
+
+## check kubectl client and server version
+kubectl version --short
+
+## get nodes
+kubectl get nodes
+
+## get namespaces
+kubectl get ns
+
+    default
+    kube-node-lease
+    kube-public
+    kube-system
+
+## get storage class
+kubectl get sc
+
+    default
+    gp2 (default)
+
+## kubesystem get all
+kubectl -n kube-system get all
