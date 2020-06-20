@@ -6,7 +6,7 @@ This demo walks you through setting up Kubernetes cluster on a local machine usi
 * wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
 * echo "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib" | sudo tee -a /etc/apt/sources.list.d/virtualbox.list
 * sudo apt-get update
-* sudo apt-get install virtualbox-6.1
+* sudo apt-get install -y virtualbox-6.1
 
 ## Minikube {Single Node K8s Cluster}
 Minikube bundles all the these k8s components into a single image and providing us a pre-configured single node k8s cluster.

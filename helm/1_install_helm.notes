@@ -1,0 +1,45 @@
+********************************************************************************
+# helm charts
+- Use Helm to deploy the Nginx web server docker containers on Kubernetes cluster
+********************************************************************************
+## Install Helm -- Download your desired version
+https://github.com/helm/helm/releases
+
+## Unpack helm binary
+tar -zxvf helm-v2.16.9-linux-amd64.tar.gz
+
+## Find the helm binary in the unpacked directory, and move it to its desired destination
+mv linux-amd64/helm /usr/local/bin/helm
+
+# check helm install path
+which helm
+
+## check helm version
+helm version --short --client
+
+
+# create service account --> tiller
+kubectl -n create serviceaccount tiller
+
+# create custer role binding --> cluster-admin
+kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
+
+# check tiller
+kubectl get clusterrolebinding tiller
+
+# initialize helm
+helm init --service-account tiller
+
+# check pods --> tiller-deploy
+kubectl -n kube-system get pods
+
+# check tiler
+kubectl -n kube-system get deploy,replicaset,pod,serviceaccount,clusterrolebinding | grep tiller
+
+
+helm search jenkins
+helm inspect stable/jenkins
+helm fetch stable/jenkins
+tar zxf jenkins-0.28.9.tgz
+cd jenkins
+ls
